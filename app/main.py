@@ -140,7 +140,7 @@ def start():
     bHeight = data["height"]
 
     return json.dumps({
-        'name': myName,
+        'name': 'flaming-torpedo',
         'color': '#ff6600',
         'head_url': 'http://fast-spire-5995.herokuapp.com',
         'taunt': 'Get ready to feel my heat!'
