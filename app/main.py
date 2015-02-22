@@ -26,9 +26,10 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
-
+    down = 'down'
+    
     return json.dumps({
-        'move': 'right',
+        'move': down,
         'taunt': 'battlesnake-python!'
     })
 
