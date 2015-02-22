@@ -116,9 +116,6 @@ def gotoFood(data):
 	return chooseDirection(closestFood,head,board)
 
 
-
-print gotoFood(testData)
-
 @bottle.get('/')
 def index():
     return """
