@@ -150,7 +150,7 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
-    
+    print "help"
     return json.dumps({
         'move': gotoFood(data),
         'taunt': 'I\'m hungry'
