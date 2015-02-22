@@ -1,6 +1,16 @@
 import bottle
 import json
 
+def spin(data):
+	check = data["turn"] % 4
+	if check == 0:
+		return 'up'
+	elif check == 1:
+		return 'right'
+	elif check == 2:
+		return 'down'
+	elif check == 3:
+		return 'left'
 
 @bottle.get('/')
 def index():
@@ -26,10 +36,9 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
-    down = 'down'
     
     return json.dumps({
-        'move': down,
+        'move': spin(data),
         'taunt': 'battlesnake-python!'
     })
 
