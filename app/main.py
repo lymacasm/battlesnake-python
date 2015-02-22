@@ -152,7 +152,7 @@ def move():
     data = bottle.request.json
     print "help"
     return json.dumps({
-        'move': gotoFood(data),
+        'move': spin(data),
         'taunt': 'I\'m hungry'
     })
 
