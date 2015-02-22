@@ -136,8 +136,8 @@ def index():
 @bottle.post('/start')
 def start():
     data = bottle.request.json
-    bWidth = data["width"]
-    bHeight = data["height"]
+    #bWidth = data["width"]
+    #bHeight = data["height"]
 
     return json.dumps({
         'name': 'flaming-torpedo',
