@@ -136,11 +136,11 @@ def index():
 @bottle.post('/start')
 def start():
     data = bottle.request.json
-    #bWidth = data["width"]
-    #bHeight = data["height"]
+    bWidth = data["width"]
+    bHeight = data["height"]
 
     return json.dumps({
-        'name': 'flaming-torpedo',
+        'name': myName,
         'color': '#ff6600',
         'head_url': 'http://fast-spire-5995.herokuapp.com',
         'taunt': 'Get ready to feel my heat!'
@@ -153,7 +153,7 @@ def move():
     
     return json.dumps({
         'move': gotoFood(data),
-        'taunt': 'I'm hungry'
+        'taunt': 'I\'m hungry'
     })
 
 
