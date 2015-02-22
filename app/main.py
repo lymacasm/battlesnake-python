@@ -31,7 +31,7 @@ def calcDistance(pos1, pos2):
 	if ydist < 0:
 		ydist *= -1
 	return xdist + ydist	
-	
+		
 def findClosestFood(food, head):	
 	distances = []
 	minIndex = 0
@@ -55,8 +55,6 @@ def isSafe(head, board, direction):
 	elif direction == 'left':
 		newPos = [head[1] - 1, head[0]]
 	boardState = board[newPos[0]][newPos[1]]["state"]
-	print newPos
-	print direction + " " + boardState
 	if newPos[0] < 0:
 		return False
 	if newPos[1] < 0:
@@ -70,18 +68,12 @@ def isSafe(head, board, direction):
 	if boardState == "head":
 		return False
 	return True
-	
+		
 def chooseDirection(food,head,board):
 	right = isSafe(head,board,'right')
-	print right
 	left = isSafe(head,board,'left')
-	print left
 	up = isSafe(head,board,'up')
-	print up
 	down = isSafe(head,board,'down')
-	print down
-	print food
-	print head
 	xdist = food[1] - head[1]
 	ydist = food[0] - head[0]
 	if xdist >= ydist:
@@ -111,7 +103,7 @@ def chooseDirection(food,head,board):
 	if right:
 		return 'right'
 	return 'left'
-	
+		
 def gotoFood(data):
 	board = data["board"]
 	mySnake = findSnake(data["snakes"], myName)
@@ -120,9 +112,12 @@ def gotoFood(data):
 	for x in range(len(coords)):
 		if board[(coords[x][0])][(coords[x][1])]["state"] == "head":
 			head = coords[x]
-			print head
-	closestFood = findClosestFood(food,head)
+		closestFood = findClosestFood(food,head)
 	return chooseDirection(closestFood,head,board)
+
+
+
+print gotoFood(testData)
 
 @bottle.get('/')
 def index():
@@ -150,10 +145,11 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
-    print "help"
+    print data
+	
     return json.dumps({
         'move': gotoFood(data),
-        'taunt': 'I\'m hungry'
+        'taunt': 'battlesnake-python!'
     })
 
 
