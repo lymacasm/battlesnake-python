@@ -146,7 +146,7 @@ def move():
 	
     return json.dumps({
         'move': gotoFood(data),
-        'taunt': 'battlesnake-python!'
+        'taunt': data["game_id"]
     })
 
 
