@@ -77,33 +77,67 @@ def chooseDirection(food,head,board):
 	xdist = food[1] - head[1]
 	ydist = food[0] - head[0]
 	if xdist >= ydist:
-		print "xdist >= ydist"
-		print xdist
 		if ( xdist > 0 ) and right:
-			return 'right'
-		if ( xdist < 0 ) and right:
-			return 'left'
+			return json.dumps({
+				'move':'right',
+				'taunt':'I am always right'
+			})
+		if ( xdist < 0 ) and left:
+			return json.dumps({
+				'move':'left',
+				'taunt':'To the left, to the left'
+			})
 		if ( ydist > 0 ) and down:
-			return 'down'
+			return json.dumps({
+				'move':'down',
+				'taunt':'Down we go'
+			})
 		if ( ydist < 0 ) and up:
-			return 'up'
+			return json.dumps({
+				'move':'up',
+				'taunt':'Upwards and onwards'
+			})
 	elif ydist > xdist:
 		if ( ydist > 0 ) and down:
-			return 'down'
+			return json.dumps({
+				'move':'down',
+				'taunt':'Down we go'
+			})
 		if ( ydist < 0 ) and up:
-			return 'up'
+			return json.dumps({
+				'move':'up',
+				'taunt':'Upwards and onwards'
+			})
 		if ( xdist > 0 ) and left:
-			return 'left'
+			return json.dumps({
+				'move':'left',
+				'taunt':'To the left, to the left'
+			})
 		if ( xdist < 0 ) and right:
-			return 'right'
+			return json.dumps({
+				'move':'right',
+				'taunt':'I am always right'
+			})
 	if down:
-		return 'down'
+		return json.dumps({
+				'move':'down',
+				'taunt':'Down we go'
+			})
 	if up:
-		return 'up'
+		return json.dumps({
+				'move':'up',
+				'taunt':'Upwards and onwards'
+			})
 	if right:
-		return 'right'
-	return 'left'
-		
+		return json.dumps({
+				'move':'right',
+				'taunt':'I am always right'
+			})
+	return json.dumps({
+				'move':'left',
+				'taunt':'To the left, to the left'
+			})
+	
 def gotoFood(data):
 	board = data["board"]
 	mySnake = findSnake(data["snakes"], myName)
@@ -142,12 +176,9 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
-    print data
+	response = gotoFood(data)
 	
-    return json.dumps({
-        'move': gotoFood(data),
-        'taunt': data["game_id"]
-    })
+    return response
 
 
 @bottle.post('/end')
