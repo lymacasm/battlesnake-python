@@ -135,7 +135,7 @@ def chooseDirection(food,head,board):
 			})
 	return json.dumps({
 				'move':'left',
-				'taunt':'To the left, to the left'
+				'taunt':'Default'
 			})
 	
 def gotoFood(data):
