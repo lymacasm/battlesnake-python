@@ -162,8 +162,9 @@ def index():
 @bottle.post('/start')
 def start():
     data = bottle.request.json
-    bWidth = data["width"]
-    bHeight = data["height"]
+    datum = json.load(data)
+    bWidth = datum["width"]
+    bHeight = datum["height"]
 
     return json.dumps({
         'name': myName,
@@ -176,7 +177,8 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
-    response = gotoFood(data)
+    datum = json.load(data)
+    response = gotoFood(datum)
 	
     return response
 
