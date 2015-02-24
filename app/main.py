@@ -75,6 +75,7 @@ def checkCollision(head, board, direction):
 		down = [head[0] - 1, head[1] + 1]
 	print ""
 	print "checkCollision"
+	print "direction: ", direction
 	print "up: ", up
 	print "down: ", down
 	print "right: ", right
