@@ -177,7 +177,9 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
-    print data
+    print ""
+    print ""
+    print data["board"]
     response = gotoFood(data)
 	
     return response
