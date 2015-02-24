@@ -1,9 +1,16 @@
 import bottle
 import json
 
+class rectangle():
+	def __init__(self):
+		self.Width = 0
+		self.Height = 0
+	def initialize(self, width, height):
+		self.Width = width
+		self.Height = height
+
+gBoard = rectangle()
 myName = 'flaming-torpedo'
-bWidth = 0
-bHeight = 0
 
 def spin(data):
 	check = data["turn"] % 4
@@ -64,11 +71,11 @@ def isSafe(head, board, direction):
 	if newPos[1] < 0:
 		print "if newPos[1] < 0, newPos[1] = ", newPos[1]
 		return False
-	if newPos[0] >= bWidth:
-		print "if newPos[0] >= bWidth, bWidth = ", bWidth
+	if newPos[0] >= gBoard.Width:
+		print "if newPos[0] >= gBoard.Width, gBoard.Width = ", gBoard.Width
 		return False
-	if newPos[1] >= bHeight:
-		print "if newPos[1] >= bHeight, bHeight = ", bHeight
+	if newPos[1] >= gBoard.Height:
+		print "if newPos[1] >= gBoard.Height, gBoard.Height = ", gBoard.Height
 		return False
 	if boardState == "body":
 		print "if boardState == \"body\", boardState = ", boardState 
@@ -181,12 +188,9 @@ def index():
 @bottle.post('/start')
 def start():
     data = bottle.request.json
-
-    bWidth = data["width"]
-    bHeight = data["height"]
-    
-    print "bWidth = ", bWidth
-    print "bHeight = ", bHeight
+    gBoard.initialize(data["width"], data["height"])
+    print "Width = ", gBoard.Width
+    print "Height = ", gBoard.Height
 
     return json.dumps({
         'name': myName,
