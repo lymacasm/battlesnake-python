@@ -47,13 +47,13 @@ def findClosestFood(food, head):
 
 def isSafe(head, board, direction):
 	if direction == 'up':
-		newPos = [head[1], head[0] - 1]
+		newPos = [head[0], head[1] - 1]
 	elif direction == 'down':
-		newPos = [head[1], head[0] + 1]
+		newPos = [head[0], head[1] + 1]
 	elif direction == 'right':
-		newPos = [head[1] + 1, head[0]]
+		newPos = [head[0] + 1, head[1]]
 	elif direction == 'left':
-		newPos = [head[1] - 1, head[0]]
+		newPos = [head[0] - 1, head[1]]
 	boardState = board[newPos[0]][newPos[1]]["state"]
 	if newPos[0] < 0:
 		return False
@@ -68,7 +68,7 @@ def isSafe(head, board, direction):
 	if boardState == "head":
 		return False
 	return True
-		
+	
 def chooseDirection(food,head,board):
 	right = isSafe(head,board,'right')
 	left = isSafe(head,board,'left')
@@ -146,7 +146,7 @@ def gotoFood(data):
 	for x in range(len(coords)):
 		if board[(coords[x][0])][(coords[x][1])]["state"] == "head":
 			head = coords[x]
-		closestFood = findClosestFood(food,head)
+	closestFood = findClosestFood(food,head)
 	return chooseDirection(closestFood,head,board)
 
 
