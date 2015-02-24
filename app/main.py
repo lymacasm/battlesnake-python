@@ -55,6 +55,9 @@ def isSafe(head, board, direction):
 	elif direction == 'left':
 		newPos = [head[0] - 1, head[1]]
 	boardState = board[newPos[0]][newPos[1]]["state"]
+	print direction + ": newPos:" 
+	print newPos
+	print boardState
 	if newPos[0] < 0:
 		return False
 	if newPos[1] < 0:
