@@ -73,12 +73,16 @@ def isSafe(head, board, direction):
 	return True
 	
 def chooseDirection(food,head,board):
-	right = isSafe(head,board,'right')
-	left = isSafe(head,board,'left')
-	up = isSafe(head,board,'up')
-	down = isSafe(head,board,'down')
 	print ""
 	print "chooseDirection:"
+	right = isSafe(head,board,'right')
+	print "right: ", right
+	left = isSafe(head,board,'left')
+	print "left: ", left
+	up = isSafe(head,board,'up')
+	print "up: ", up
+	down = isSafe(head,board,'down')
+	print "down: ", down
 	print "food: ", food
 	print "head: ", head
 	xdist = food[0] - head[0]
