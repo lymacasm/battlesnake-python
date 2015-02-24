@@ -52,6 +52,54 @@ def findClosestFood(food, head):
 				minIndex = s
 		return food[minIndex]	
 
+def checkCollsion(head, board, direction):
+	if direction == 'up':
+		right = [head[0] + 1, head[1] - 1]
+		left = [head[0] - 1, head[1] - 1]
+		up = [head[0], head[1] - 2]
+		down = [-10,-10]
+	elif direction == 'down':
+		right = [head[0] + 1, head[1] + 1]
+		left = [head[0] - 1, head[1] + 1]
+		up = [-10,-10]
+		down = [head[0], head[1] + 2]
+	elif direction == 'right':
+		right = [head[0] + 2, head[1]]
+		left = [-10,-10]
+		up = [head[0] + 1, head[1] - 1]
+		down = [head[0] + 1, head[1] + 1]
+	elif direction == 'left':
+		right = [-10,-10]
+		left = [head[0] - 2, head[1]]
+		up = [head[0] - 1, head[1] - 1]
+		down = [head[0] - 1, head[1] + 1]
+	
+	if right[0] < 0 or right[1] < 0 or right[0] >= gBoard.Width or right[1] >= gBoard.Height:
+		boardRightState = ""
+	else:
+		boardRightState = board[right[0]][right[1]]["state"]
+	if left[0] < 0 or left[1] < 0 or left[0] >= gBoard.Width or left[1] >= gBoard.Height:
+		boardLeftState = ""
+	else:
+		boardLeftState = board[left[0]][left[1]]["state"]
+	if up[0] < 0 or up[1] < 0 or up[0] >= gBoard.Width or up[1] >= gBoard.Height:
+		boardUpState = ""
+	else:
+		boardUpState = board[up[0]][up[1]]["state"]
+	if down[0] < 0 or down[1] < 0 or down[0] >= gBoard.Width or down[0] >= gBoard.Height:
+		boardDownState = ""
+	else:
+		boardDownState = board[down[0]][down[1]]["state"]
+	if boardRightState == "head":
+		return False
+	if boardLeftState == "head":
+		return False
+	if boardUpState == "head":
+		return False
+	if boardDownState == "head":
+		return False
+	return True
+
 def isSafe(head, board, direction):
 	if direction == 'up':
 		newPos = [head[0], head[1] - 1]
@@ -89,18 +137,8 @@ def chooseDirection(food,head,board):
 	left = isSafe(head,board,'left')
 	up = isSafe(head,board,'up')
 	down = isSafe(head,board,'down')
-	print ""
-	print "chooseDirection:"
-	print "right: ", right
-	print "left: ", left
-	print "up: ", up
-	print "down: ", down
-	print "food: ", food
-	print "head: ", head
 	xdist = food[0] - head[0]
 	ydist = food[1] - head[1]
-	print "xdist: ", xdist
-	print "ydist: ", ydist
 	xabs = 0
 	yabs = 0
 	if xdist < 0:
@@ -111,6 +149,48 @@ def chooseDirection(food,head,board):
 		yabs = -ydist
 	else:
 		yabs = ydist
+	if xabs >= yabs:
+		if ( xdist > 0 ) and right and checkCollision(head,board,'right'):
+			return json.dumps({
+				'move':'right',
+				'taunt':'x: I am always right'
+			})
+		if ( xdist < 0 ) and left and checkCollision(head,board,'left'):
+			return json.dumps({
+				'move':'left',
+				'taunt':'x: To the left, to the left'
+			})
+		if ( ydist > 0 ) and down and checkCollision(head,board,'down'):
+			return json.dumps({
+				'move':'down',
+				'taunt':'x: Down we go'
+			})
+		if ( ydist < 0 ) and up and checkCollision(head,board,'up'):
+			return json.dumps({
+				'move':'up',
+				'taunt':'x: Upwards and onwards'
+			})
+	elif yabs > xabs:
+		if ( ydist > 0 ) and down and checkCollision(head,board,'down'):
+			return json.dumps({
+				'move':'down',
+				'taunt':'y: Down we go'
+			})
+		if ( ydist < 0 ) and up and checkCollision(head,board,'up'):
+			return json.dumps({
+				'move':'up',
+				'taunt':'y: Upwards and onwards'
+			})
+		if ( xdist > 0 ) and left and checkCollision(head,board,'left'):
+			return json.dumps({
+				'move':'left',
+				'taunt':'y: To the left, to the left'
+			})
+		if ( xdist < 0 ) and right and checkCollision(head,board,'right'):
+			return json.dumps({
+				'move':'right',
+				'taunt':'y: I am always right'
+			})
 	if xabs >= yabs:
 		if ( xdist > 0 ) and right:
 			return json.dumps({
