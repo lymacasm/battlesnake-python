@@ -54,25 +54,25 @@ def findClosestFood(food, head):
 
 def checkCollision(head, board, direction):
 	if direction == 'up':
-		right = [head[0] + 1, head[1] - 2]
-		left = [head[0] - 1, head[1] - 2]
-		up = [head[0], head[1] - 3]
+		right = [head[0] + 1, head[1] - 1]
+		left = [head[0] - 1, head[1] - 1]
+		up = [head[0], head[1] - 2]
 		down = [-10,-10]
 	elif direction == 'down':
-		right = [head[0] + 1, head[1] + 2]
-		left = [head[0] - 1, head[1] + 2]
+		right = [head[0] + 1, head[1] + 1]
+		left = [head[0] - 1, head[1] + 1]
 		up = [-10,-10]
-		down = [head[0], head[1] + 3]
+		down = [head[0], head[1] + 2]
 	elif direction == 'right':
-		right = [head[0] + 3, head[1]]
+		right = [head[0] + 2, head[1]]
 		left = [-10,-10]
-		up = [head[0] + 2, head[1] - 1]
-		down = [head[0] + 2, head[1] + 1]
+		up = [head[0] + 1, head[1] - 1]
+		down = [head[0] + 1, head[1] + 1]
 	elif direction == 'left':
 		right = [-10,-10]
-		left = [head[0] - 3, head[1]]
-		up = [head[0] - 2, head[1] - 1]
-		down = [head[0] - 2, head[1] + 1]
+		left = [head[0] - 2, head[1]]
+		up = [head[0] - 1, head[1] - 1]
+		down = [head[0] - 1, head[1] + 1]
 	print ""
 	print "checkCollision"
 	print "direction: ", direction
