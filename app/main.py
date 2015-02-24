@@ -101,7 +101,17 @@ def chooseDirection(food,head,board):
 	ydist = food[1] - head[1]
 	print "xdist: ", xdist
 	print "ydist: ", ydist
-	if xdist >= ydist:
+	xabs = 0
+	yabs = 0
+	if xdist < 0:
+		xabs = -xdist
+	else:
+		xabs = xdist
+	if ydist < 0:
+		yabs = -ydist
+	else:
+		yabs = ydist
+	if xabs >= yabs:
 		if ( xdist > 0 ) and right:
 			return json.dumps({
 				'move':'right',
@@ -122,7 +132,7 @@ def chooseDirection(food,head,board):
 				'move':'up',
 				'taunt':'x: Upwards and onwards'
 			})
-	elif ydist > xdist:
+	elif yabs > xabs:
 		if ( ydist > 0 ) and down:
 			return json.dumps({
 				'move':'down',
