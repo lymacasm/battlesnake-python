@@ -73,7 +73,12 @@ def checkCollision(head, board, direction):
 		left = [head[0] - 2, head[1]]
 		up = [head[0] - 1, head[1] - 1]
 		down = [head[0] - 1, head[1] + 1]
-	
+	print ""
+	print "checkCollision"
+	print "up: ", up
+	print "down: ", down
+	print "right: ", right
+	print "left: ", left
 	if right[0] < 0 or right[1] < 0 or right[0] >= gBoard.Width or right[1] >= gBoard.Height:
 		boardRightState = ""
 	else:
@@ -90,6 +95,10 @@ def checkCollision(head, board, direction):
 		boardDownState = ""
 	else:
 		boardDownState = board[down[0]][down[1]]["state"]
+	print "boardRightState: ", boardRightState
+	print "boardLeftState: ", boardLeftState
+	print "boradUpState: ", boardUpState
+	print "boardDownState: ", boardDownState
 	if boardRightState == "head":
 		return False
 	if boardLeftState == "head":
