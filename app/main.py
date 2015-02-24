@@ -77,10 +77,14 @@ def chooseDirection(food,head,board):
 	left = isSafe(head,board,'left')
 	up = isSafe(head,board,'up')
 	down = isSafe(head,board,'down')
+	print ""
+	print "chooseDirection:"
 	print "food: ", food
 	print "head: ", head
 	xdist = food[0] - head[0]
 	ydist = food[1] - head[1]
+	print "xdist: ", xdist
+	print "ydist: ", ydist
 	if xdist >= ydist:
 		if ( xdist > 0 ) and right:
 			return json.dumps({
