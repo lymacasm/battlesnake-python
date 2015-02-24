@@ -135,7 +135,7 @@ def chooseDirection(food,head,board):
 			})
 	return json.dumps({
 				'move':'left',
-				'taunt':board[9][9]["status"]
+				'taunt':'Default'
 			})
 	
 def gotoFood(data):
@@ -177,7 +177,7 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
-    print data["board"]
+    print data
     response = gotoFood(data)
 	
     return response
