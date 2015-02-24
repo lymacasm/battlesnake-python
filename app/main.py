@@ -59,29 +59,35 @@ def isSafe(head, board, direction):
 	print "newPos: ", newPos
 	print "boardState: ", boardState
 	if newPos[0] < 0:
+		print "if newPos[0] < 0, newPos[0] = ", newPos[0]
 		return False
 	if newPos[1] < 0:
+		print "if newPos[1] < 0, newPos[1] = ", newPos[1]
 		return False
 	if newPos[0] >= bWidth:
+		print "if newPos[0] >= bWidth, bWidth = ", bWidth
 		return False
 	if newPos[1] >= bHeight:
+		print "if newPos[1] >= bHeight, bHeight = ", bHeight
 		return False
 	if boardState == "body":
+		print "if boardState == \"body\", boardState = ", boardState 
 		return False
 	if boardState == "head":
+		print "if boardState == \"head\", boardState = ", boardState
 		return False
 	return True
 	
 def chooseDirection(food,head,board):
+	right = isSafe(head,board,'right')
+	left = isSafe(head,board,'left')
+	up = isSafe(head,board,'up')
+	down = isSafe(head,board,'down')
 	print ""
 	print "chooseDirection:"
-	right = isSafe(head,board,'right')
 	print "right: ", right
-	left = isSafe(head,board,'left')
 	print "left: ", left
-	up = isSafe(head,board,'up')
 	print "up: ", up
-	down = isSafe(head,board,'down')
 	print "down: ", down
 	print "food: ", food
 	print "head: ", head
@@ -178,6 +184,9 @@ def start():
 
     bWidth = data["width"]
     bHeight = data["height"]
+    
+    print "bWidth = ", bWidth
+    print "bHeight = ", bHeight
 
     return json.dumps({
         'name': myName,
