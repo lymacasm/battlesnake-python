@@ -61,10 +61,8 @@ def isSafe(head, board, direction):
 		newPos = [head[0] + 1, head[1]]
 	elif direction == 'left':
 		newPos = [head[0] - 1, head[1]]
-	boardState = board[newPos[0]][newPos[1]]["state"]
 	print "direction: ", direction
 	print "newPos: ", newPos
-	print "boardState: ", boardState
 	if newPos[0] < 0:
 		print "if newPos[0] < 0, newPos[0] = ", newPos[0]
 		return False
@@ -77,6 +75,7 @@ def isSafe(head, board, direction):
 	if newPos[1] >= gBoard.Height:
 		print "if newPos[1] >= gBoard.Height, gBoard.Height = ", gBoard.Height
 		return False
+	boardState = board[newPos[0]][newPos[1]]["state"]
 	if boardState == "body":
 		print "if boardState == \"body\", boardState = ", boardState 
 		return False
