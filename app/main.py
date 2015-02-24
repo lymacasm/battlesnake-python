@@ -51,7 +51,7 @@ def findClosestFood(food, head):
 			if distances[s] < distances[minIndex]:
 				minIndex = s
 		return food[minIndex]	
-
+'''
 def checkCollision(head, board, direction):
 	if direction == 'up':
 		right = [head[0] + 1, head[1] - 1]
@@ -109,7 +109,7 @@ def checkCollision(head, board, direction):
 	if boardDownState == "head":
 		return False
 	return True
-
+'''
 def isSafe(head, board, direction):
 	if direction == 'up':
 		newPos = [head[0], head[1] - 1]
@@ -159,6 +159,7 @@ def chooseDirection(food,head,board):
 		yabs = -ydist
 	else:
 		yabs = ydist
+	'''
 	if xabs >= yabs:
 		if ( xdist > 0 ) and right and checkCollision(head,board,'right'):
 			return json.dumps({
@@ -201,6 +202,7 @@ def chooseDirection(food,head,board):
 				'move':'right',
 				'taunt':'y: I am always right'
 			})
+	'''
 	if xabs >= yabs:
 		if ( xdist > 0 ) and right:
 			return json.dumps({
