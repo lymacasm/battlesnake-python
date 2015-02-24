@@ -175,7 +175,6 @@ def gotoFood(data):
 	closestFood = findClosestFood(food,head)
 	return chooseDirection(closestFood,head,board)
 
-
 @bottle.get('/')
 def index():
     return """
@@ -189,8 +188,8 @@ def index():
 def start():
     data = bottle.request.json
     gBoard.initialize(data["width"], data["height"])
-    print "Width = ", gBoard.Width
-    print "Height = ", gBoard.Height
+    print "gBoard.Width = ", gBoard.Width
+    print "gBoard.Height = ", gBoard.Height
 
     return json.dumps({
         'name': myName,
@@ -203,6 +202,10 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
+    gBoard.initialize(len(data["board"]),len(data["board][0]))
+    print "move(): "
+    print "gBoard.Width = ", gBoard.Width
+    print "gBoard.Height = ", gBoard.Height
     
     response = gotoFood(data)
 	
