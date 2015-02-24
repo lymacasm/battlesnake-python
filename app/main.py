@@ -178,8 +178,12 @@ def start():
 def move():
     data = bottle.request.json
     print ""
-    print ""
+    print "data[\"board\"]"
     print data["board"]
+    print ""
+    board = data["board"]
+    print "board"
+    print board
     response = gotoFood(data)
 	
     return response
