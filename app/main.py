@@ -283,7 +283,7 @@ def start():
     return json.dumps({
         'name': myName,
         'color': '#ff6600',
-        'head_url': 'http://fast-spire-5995.herokuapp.com',
+        'head_url': 'http://img1.wikia.nocookie.net/__cb20131126020959/tardis/images/4/44/EyesOfTwelve.jpg',
         'taunt': 'Get ready to feel my heat!'
     })
 
