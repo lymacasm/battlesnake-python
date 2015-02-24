@@ -52,7 +52,7 @@ def findClosestFood(food, head):
 				minIndex = s
 		return food[minIndex]	
 
-def checkCollsion(head, board, direction):
+def checkCollision(head, board, direction):
 	if direction == 'up':
 		right = [head[0] + 1, head[1] - 1]
 		left = [head[0] - 1, head[1] - 1]
