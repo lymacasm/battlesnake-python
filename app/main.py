@@ -55,9 +55,9 @@ def isSafe(head, board, direction):
 	elif direction == 'left':
 		newPos = [head[0] - 1, head[1]]
 	boardState = board[newPos[0]][newPos[1]]["state"]
-	print direction + ": newPos:" 
-	print newPos
-	print boardState
+	print "direction: ", direction
+	print "newPos: ", newPos
+	print "boardState: ", boardState
 	if newPos[0] < 0:
 		return False
 	if newPos[1] < 0:
@@ -77,68 +77,70 @@ def chooseDirection(food,head,board):
 	left = isSafe(head,board,'left')
 	up = isSafe(head,board,'up')
 	down = isSafe(head,board,'down')
-	xdist = food[1] - head[1]
-	ydist = food[0] - head[0]
+	print "food: ", food
+	print "head: ", head
+	xdist = food[0] - head[0]
+	ydist = food[1] - head[1]
 	if xdist >= ydist:
 		if ( xdist > 0 ) and right:
 			return json.dumps({
 				'move':'right',
-				'taunt':'I am always right'
+				'taunt':'x: I am always right'
 			})
 		if ( xdist < 0 ) and left:
 			return json.dumps({
 				'move':'left',
-				'taunt':'To the left, to the left'
+				'taunt':'x: To the left, to the left'
 			})
 		if ( ydist > 0 ) and down:
 			return json.dumps({
 				'move':'down',
-				'taunt':'Down we go'
+				'taunt':'x: Down we go'
 			})
 		if ( ydist < 0 ) and up:
 			return json.dumps({
 				'move':'up',
-				'taunt':'Upwards and onwards'
+				'taunt':'x: Upwards and onwards'
 			})
 	elif ydist > xdist:
 		if ( ydist > 0 ) and down:
 			return json.dumps({
 				'move':'down',
-				'taunt':'Down we go'
+				'taunt':'y: Down we go'
 			})
 		if ( ydist < 0 ) and up:
 			return json.dumps({
 				'move':'up',
-				'taunt':'Upwards and onwards'
+				'taunt':'y: Upwards and onwards'
 			})
 		if ( xdist > 0 ) and left:
 			return json.dumps({
 				'move':'left',
-				'taunt':'To the left, to the left'
+				'taunt':'y: To the left, to the left'
 			})
 		if ( xdist < 0 ) and right:
 			return json.dumps({
 				'move':'right',
-				'taunt':'I am always right'
+				'taunt':'y: I am always right'
 			})
 	if down:
 		return json.dumps({
 				'move':'down',
-				'taunt':'Down we go'
+				'taunt':'Down default'
 			})
 	if up:
 		return json.dumps({
 				'move':'up',
-				'taunt':'Upwards and onwards'
+				'taunt':'Up default'
 			})
 	if right:
 		return json.dumps({
 				'move':'right',
-				'taunt':'I am always right'
+				'taunt':'Right default'
 			})
 	return json.dumps({
 				'move':'left',
-				'taunt':'Default'
+				'taunt':'Left Default'
 			})
 	
 def gotoFood(data):
@@ -180,13 +182,7 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
-    print ""
-    print "data[\"board\"]"
-    print data["board"]
-    print ""
-    board = data["board"]
-    print "board"
-    print board
+    
     response = gotoFood(data)
 	
     return response
