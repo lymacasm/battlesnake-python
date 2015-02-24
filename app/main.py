@@ -202,7 +202,7 @@ def start():
 @bottle.post('/move')
 def move():
     data = bottle.request.json
-    gBoard.initialize(len(data["board"]),len(data["board][0]))
+    gBoard.initialize(len(data["board"]),len(data["board"][0]))
     print "move(): "
     print "gBoard.Width = ", gBoard.Width
     print "gBoard.Height = ", gBoard.Height
