@@ -109,16 +109,16 @@ def checkCollision(head, board, snakes, direction):
 	print "boardLeftState: ", boardLeft
 	print "boradUpState: ", boardUp
 	print "boardDownState: ", boardDown
-	if boardRight["state"] == "head" and mySnakeSize <= sizeOfSnake(snakes,boardRight["snake"]):
+	if boardRight != None and boardRight["state"] == "head" and mySnakeSize <= sizeOfSnake(snakes,boardRight["snake"]):
 		print False
 		return False
-	if boardLeft["state"] == "head" and mySnakeSize <= sizeOfSnake(snakes,boardLeft["snake"]):
+	if boardLeft != None and boardLeft["state"] == "head" and mySnakeSize <= sizeOfSnake(snakes,boardLeft["snake"]):
 		print False
 		return False
-	if boardUp["state"] == "head" and mySnakeSize <= sizeOfSnake(snakes,boardUp["snake"]):
+	if boardUp != None and boardUp["state"] == "head" and mySnakeSize <= sizeOfSnake(snakes,boardUp["snake"]):
 		print False
 		return False
-	if boardDown["state"] == "head" and mySnakeSize <= sizeOfSnake(snakes,boardDown["snake"]):
+	if boardDown != None and boardDown["state"] == "head" and mySnakeSize <= sizeOfSnake(snakes,boardDown["snake"]):
 		print False
 		return False
 	print True
