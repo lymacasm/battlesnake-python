@@ -93,15 +93,15 @@ def checkCollision(head, board, snakes, direction):
 	else:
 		boardRight = board[right[0]][right[1]]
 	if left[0] < 0 or left[1] < 0 or left[0] >= gBoard.Width or left[1] >= gBoard.Height:
-		boardLeftState = None
+		boardLeft = None
 	else:
 		boardLeft = board[left[0]][left[1]]
 	if up[0] < 0 or up[1] < 0 or up[0] >= gBoard.Width or up[1] >= gBoard.Height:
-		boardUpState = None
+		boardUp = None
 	else:
 		boardUp = board[up[0]][up[1]]
 	if down[0] < 0 or down[1] < 0 or down[0] >= gBoard.Width or down[1] >= gBoard.Height:
-		boardDownState = None
+		boardDown = None
 	else:
 		boardDown = board[down[0]][down[1]]
 	mySnakeSize = sizeOfSnake(snakes,myName)
