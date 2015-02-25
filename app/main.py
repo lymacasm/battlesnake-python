@@ -80,7 +80,6 @@ def checkCollision(head, board, direction):
 	print "down: ", down
 	print "right: ", right
 	print "left: ", left
-	print "board: ", board
 	if right[0] < 0 or right[1] < 0 or right[0] >= gBoard.Width or right[1] >= gBoard.Height:
 		boardRightState = ""
 	else:
@@ -101,6 +100,7 @@ def checkCollision(head, board, direction):
 	print "boardLeftState: ", boardLeftState
 	print "boradUpState: ", boardUpState
 	print "boardDownState: ", boardDownState
+	print "board: ", board
 	if boardRightState == "head":
 		return False
 	if boardLeftState == "head":
@@ -120,26 +120,18 @@ def isSafe(head, board, direction):
 		newPos = [head[0] + 1, head[1]]
 	elif direction == 'left':
 		newPos = [head[0] - 1, head[1]]
-	print "direction: ", direction
-	print "newPos: ", newPos
 	if newPos[0] < 0:
-		print "if newPos[0] < 0, newPos[0] = ", newPos[0]
 		return False
 	if newPos[1] < 0:
-		print "if newPos[1] < 0, newPos[1] = ", newPos[1]
 		return False
 	if newPos[0] >= gBoard.Width:
-		print "if newPos[0] >= gBoard.Width, gBoard.Width = ", gBoard.Width
 		return False
 	if newPos[1] >= gBoard.Height:
-		print "if newPos[1] >= gBoard.Height, gBoard.Height = ", gBoard.Height
 		return False
 	boardState = board[newPos[0]][newPos[1]]["state"]
 	if boardState == "body":
-		print "if boardState == \"body\", boardState = ", boardState 
 		return False
 	if boardState == "head":
-		print "if boardState == \"head\", boardState = ", boardState
 		return False
 	return True
 	
@@ -160,7 +152,6 @@ def chooseDirection(food,head,board):
 		yabs = -ydist
 	else:
 		yabs = ydist
-	'''
 	if xabs >= yabs:
 		if ( xdist > 0 ) and right and checkCollision(head,board,'right'):
 			return json.dumps({
@@ -203,7 +194,6 @@ def chooseDirection(food,head,board):
 				'move':'right',
 				'taunt':'y: I am always right'
 			})
-	'''
 	if xabs >= yabs:
 		if ( xdist > 0 ) and right:
 			return json.dumps({
@@ -290,8 +280,6 @@ def index():
 def start():
     data = bottle.request.json
     gBoard.initialize(data["width"], data["height"])
-    print "gBoard.Width = ", gBoard.Width
-    print "gBoard.Height = ", gBoard.Height
 
     return json.dumps({
         'name': myName,
@@ -305,9 +293,6 @@ def start():
 def move():
     data = bottle.request.json
     gBoard.initialize(len(data["board"]),len(data["board"][0]))
-    print "move(): "
-    print "gBoard.Width = ", gBoard.Width
-    print "gBoard.Height = ", gBoard.Height
     
     response = gotoFood(data)
 	
