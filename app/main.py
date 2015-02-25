@@ -124,7 +124,7 @@ def checkCollision(head, board, snakes, direction):
 	print True
 	return True
 
-def isSafe(head, board, direction):
+def isSafe(head, board, snakes, direction):
 	if direction == 'up':
 		newPos = [head[0], head[1] - 1]
 	elif direction == 'down':
@@ -141,18 +141,18 @@ def isSafe(head, board, direction):
 		return False
 	if newPos[1] >= gBoard.Height:
 		return False
-	boardState = board[newPos[0]][newPos[1]]["state"]
-	if boardState == "body":
+	boardState = board[newPos[0]][newPos[1]]
+	if boardState["state"] == "body":
 		return False
-	if boardState == "head":
+	if boardState["state"] == "head" and sizeOfSnake(snakes,myName) <= sizeOf(snakes,boardState["snake"]):
 		return False
 	return True
 	
 def chooseDirection(food,head,snakes,board):
-	right = isSafe(head,board,'right')
-	left = isSafe(head,board,'left')
-	up = isSafe(head,board,'up')
-	down = isSafe(head,board,'down')
+	right = isSafe(head,board,snakes,'right')
+	left = isSafe(head,board,snakes,'left')
+	up = isSafe(head,board,snakes,'up')
+	down = isSafe(head,board,snakes,'down')
 	xdist = food[0] - head[0]
 	ydist = food[1] - head[1]
 	xabs = 0
