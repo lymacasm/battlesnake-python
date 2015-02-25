@@ -144,7 +144,7 @@ def isSafe(head, board, snakes, direction):
 	boardState = board[newPos[0]][newPos[1]]
 	if boardState["state"] == "body":
 		return False
-	if boardState["state"] == "head" and sizeOfSnake(snakes,myName) <= sizeOf(snakes,boardState["snake"]):
+	if boardState["state"] == "head":
 		print "isSafe: False"
 		return False
 	print "isSafe: True"
