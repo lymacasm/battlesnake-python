@@ -30,6 +30,11 @@ def findSnake(snakes, name):
 			return snakes[x]
 	return None
 	
+def sizeOfSnake(snakes, name):
+	ThisSnake = findSnake(name)
+	size = len(ThisSnake["coords"])
+	return size
+
 def calcDistance(pos1, pos2):
 	xdist = pos2[0] - pos1[0]
 	if xdist < 0:
@@ -52,7 +57,7 @@ def findClosestFood(food, head):
 				minIndex = s
 		return food[minIndex]	
 
-def checkCollision(head, board, direction):
+def checkCollision(head, board, snakes, direction):
 	if direction == 'up':
 		right = [head[0] + 1, head[1] - 1]
 		left = [head[0] - 1, head[1] - 1]
@@ -82,35 +87,36 @@ def checkCollision(head, board, direction):
 	print "right: ", right
 	print "left: ", left
 	if right[0] < 0 or right[1] < 0 or right[0] >= gBoard.Width or right[1] >= gBoard.Height:
-		boardRightState = ""
+		boardRight = None
 	else:
-		boardRightState = board[right[0]][right[1]]["state"]
+		boardRight = board[right[0]][right[1]]
 	if left[0] < 0 or left[1] < 0 or left[0] >= gBoard.Width or left[1] >= gBoard.Height:
-		boardLeftState = ""
+		boardLeftState = None
 	else:
-		boardLeftState = board[left[0]][left[1]]["state"]
+		boardLeft = board[left[0]][left[1]]
 	if up[0] < 0 or up[1] < 0 or up[0] >= gBoard.Width or up[1] >= gBoard.Height:
-		boardUpState = ""
+		boardUpState = None
 	else:
-		boardUpState = board[up[0]][up[1]]["state"]
+		boardUp = board[up[0]][up[1]]
 	if down[0] < 0 or down[1] < 0 or down[0] >= gBoard.Width or down[1] >= gBoard.Height:
-		boardDownState = ""
+		boardDownState = None
 	else:
-		boardDownState = board[down[0]][down[1]]["state"]
-	print "boardRightState: ", boardRightState
-	print "boardLeftState: ", boardLeftState
-	print "boradUpState: ", boardUpState
-	print "boardDownState: ", boardDownState
-	if boardRightState == "head":
+		boardDown = board[down[0]][down[1]]
+	mySnakeSize = sizeOfSnakes(snakes,myName)
+	print "boardRightState: ", boardRight
+	print "boardLeftState: ", boardLeft
+	print "boradUpState: ", boardUp
+	print "boardDownState: ", boardDown
+	if boardRight["state"] == "head" and mySnakeSize <= sizeOfSnakes(snakes,boardRight["snake"]):
 		print False
 		return False
-	if boardLeftState == "head":
+	if boardLeft["state"] == "head" and mySnakeSize <= sizeOfSnakes(snakes,boardLeft["snake"]):
 		print False
 		return False
-	if boardUpState == "head":
+	if boardUp["state"] == "head" and mySnakeSize <= sizeOfSnakes(snakes,boardUp["snake"]):
 		print False
 		return False
-	if boardDownState == "head":
+	if boardDown["state"] == "head" and mySnakeSize <= sizeOfSnakes(snakes,boardDown["snake"]):
 		print False
 		return False
 	print True
@@ -140,7 +146,7 @@ def isSafe(head, board, direction):
 		return False
 	return True
 	
-def chooseDirection(food,head,board):
+def chooseDirection(food,head,snakes,board):
 	right = isSafe(head,board,'right')
 	left = isSafe(head,board,'left')
 	up = isSafe(head,board,'up')
@@ -158,43 +164,43 @@ def chooseDirection(food,head,board):
 	else:
 		yabs = ydist
 	if xabs >= yabs:
-		if ( xdist > 0 ) and right and checkCollision(head,board,'right'):
+		if ( xdist > 0 ) and right and checkCollision(head,board,snakes,'right'):
 			return json.dumps({
 				'move':'right',
 				'taunt':'I checked for collision'
 			})
-		if ( xdist < 0 ) and left and checkCollision(head,board,'left'):
+		if ( xdist < 0 ) and left and checkCollision(head,board,snakes,'left'):
 			return json.dumps({
 				'move':'left',
 				'taunt':'I checked for collision'
 			})
-		if ( ydist > 0 ) and down and checkCollision(head,board,'down'):
+		if ( ydist > 0 ) and down and checkCollision(head,board,snakes,'down'):
 			return json.dumps({
 				'move':'down',
 				'taunt':'I checked for collision'
 			})
-		if ( ydist < 0 ) and up and checkCollision(head,board,'up'):
+		if ( ydist < 0 ) and up and checkCollision(head,board,snakes,'up'):
 			return json.dumps({
 				'move':'up',
 				'taunt':'I checked for collision'
 			})
 	elif yabs > xabs:
-		if ( ydist > 0 ) and down and checkCollision(head,board,'down'):
+		if ( ydist > 0 ) and down and checkCollision(head,board,snakes,'down'):
 			return json.dumps({
 				'move':'down',
 				'taunt':'I checked for collision'
 			})
-		if ( ydist < 0 ) and up and checkCollision(head,board,'up'):
+		if ( ydist < 0 ) and up and checkCollision(head,board,snakes,'up'):
 			return json.dumps({
 				'move':'up',
 				'taunt':'I checked for collision'
 			})
-		if ( xdist > 0 ) and left and checkCollision(head,board,'left'):
+		if ( xdist > 0 ) and left and checkCollision(head,board,snakes,'left'):
 			return json.dumps({
 				'move':'left',
 				'taunt':'I checked for collision'
 			})
-		if ( xdist < 0 ) and right and checkCollision(head,board,'right'):
+		if ( xdist < 0 ) and right and checkCollision(head,board,snakes,'right'):
 			return json.dumps({
 				'move':'right',
 				'taunt':'I checked for collision'
@@ -228,7 +234,7 @@ def gotoFood(data):
 		if board[(coords[x][0])][(coords[x][1])]["state"] == "head":
 			head = coords[x]
 	closestFood = findClosestFood(food,head)
-	return chooseDirection(closestFood,head,board)
+	return chooseDirection(closestFood,head,data["snakes"],board)
 
 @bottle.get('/')
 def index():
