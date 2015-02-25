@@ -51,7 +51,7 @@ def findClosestFood(food, head):
 			if distances[s] < distances[minIndex]:
 				minIndex = s
 		return food[minIndex]	
-'''
+
 def checkCollision(head, board, direction):
 	if direction == 'up':
 		right = [head[0] + 1, head[1] - 1]
@@ -80,6 +80,7 @@ def checkCollision(head, board, direction):
 	print "down: ", down
 	print "right: ", right
 	print "left: ", left
+	print "board: ", board
 	if right[0] < 0 or right[1] < 0 or right[0] >= gBoard.Width or right[1] >= gBoard.Height:
 		boardRightState = ""
 	else:
@@ -109,7 +110,7 @@ def checkCollision(head, board, direction):
 	if boardDownState == "head":
 		return False
 	return True
-'''
+
 def isSafe(head, board, direction):
 	if direction == 'up':
 		newPos = [head[0], head[1] - 1]
