@@ -199,48 +199,6 @@ def chooseDirection(food,head,board):
 				'move':'right',
 				'taunt':'I checked for collision'
 			})
-	if xabs >= yabs:
-		if ( xdist > 0 ) and right:
-			return json.dumps({
-				'move':'right',
-				'taunt':'I didn\'t check for collision'
-			})
-		if ( xdist < 0 ) and left:
-			return json.dumps({
-				'move':'left',
-				'taunt':'I didn\'t check for collision'
-			})
-		if ( ydist > 0 ) and down:
-			return json.dumps({
-				'move':'down',
-				'taunt':'I didn\'t check for collision'
-			})
-		if ( ydist < 0 ) and up:
-			return json.dumps({
-				'move':'up',
-				'taunt':'I didn\'t check for collision'
-			})
-	elif yabs > xabs:
-		if ( ydist > 0 ) and down:
-			return json.dumps({
-				'move':'down',
-				'taunt':'I didn\'t check for collision'
-			})
-		if ( ydist < 0 ) and up:
-			return json.dumps({
-				'move':'up',
-				'taunt':'I didn\'t check for collision'
-			})
-		if ( xdist > 0 ) and left:
-			return json.dumps({
-				'move':'left',
-				'taunt':'I didn\'t check for collision'
-			})
-		if ( xdist < 0 ) and right:
-			return json.dumps({
-				'move':'right',
-				'taunt':'I didn\'t check for collision'
-			})
 	if down:
 		return json.dumps({
 				'move':'down',
