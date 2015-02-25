@@ -145,7 +145,9 @@ def isSafe(head, board, snakes, direction):
 	if boardState["state"] == "body":
 		return False
 	if boardState["state"] == "head" and sizeOfSnake(snakes,myName) <= sizeOf(snakes,boardState["snake"]):
+		print "isSafe: False"
 		return False
+	print "isSafe: True"
 	return True
 	
 def chooseDirection(food,head,snakes,board):
