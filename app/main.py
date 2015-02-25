@@ -156,85 +156,85 @@ def chooseDirection(food,head,board):
 		if ( xdist > 0 ) and right and checkCollision(head,board,'right'):
 			return json.dumps({
 				'move':'right',
-				'taunt':'x: I am always right'
+				'taunt':'I checked for collision'
 			})
 		if ( xdist < 0 ) and left and checkCollision(head,board,'left'):
 			return json.dumps({
 				'move':'left',
-				'taunt':'x: To the left, to the left'
+				'taunt':'I checked for collision'
 			})
 		if ( ydist > 0 ) and down and checkCollision(head,board,'down'):
 			return json.dumps({
 				'move':'down',
-				'taunt':'x: Down we go'
+				'taunt':'I checked for collision'
 			})
 		if ( ydist < 0 ) and up and checkCollision(head,board,'up'):
 			return json.dumps({
 				'move':'up',
-				'taunt':'x: Upwards and onwards'
+				'taunt':'I checked for collision'
 			})
 	elif yabs > xabs:
 		if ( ydist > 0 ) and down and checkCollision(head,board,'down'):
 			return json.dumps({
 				'move':'down',
-				'taunt':'y: Down we go'
+				'taunt':'I checked for collision'
 			})
 		if ( ydist < 0 ) and up and checkCollision(head,board,'up'):
 			return json.dumps({
 				'move':'up',
-				'taunt':'y: Upwards and onwards'
+				'taunt':'I checked for collision'
 			})
 		if ( xdist > 0 ) and left and checkCollision(head,board,'left'):
 			return json.dumps({
 				'move':'left',
-				'taunt':'y: To the left, to the left'
+				'taunt':'I checked for collision'
 			})
 		if ( xdist < 0 ) and right and checkCollision(head,board,'right'):
 			return json.dumps({
 				'move':'right',
-				'taunt':'y: I am always right'
+				'taunt':'I checked for collision'
 			})
 	if xabs >= yabs:
 		if ( xdist > 0 ) and right:
 			return json.dumps({
 				'move':'right',
-				'taunt':'x: I am always right'
+				'taunt':'I didn\'t check for collision'
 			})
 		if ( xdist < 0 ) and left:
 			return json.dumps({
 				'move':'left',
-				'taunt':'x: To the left, to the left'
+				'taunt':'I didn\'t check for collision'
 			})
 		if ( ydist > 0 ) and down:
 			return json.dumps({
 				'move':'down',
-				'taunt':'x: Down we go'
+				'taunt':'I didn\'t check for collision'
 			})
 		if ( ydist < 0 ) and up:
 			return json.dumps({
 				'move':'up',
-				'taunt':'x: Upwards and onwards'
+				'taunt':'I didn\'t check for collision'
 			})
 	elif yabs > xabs:
 		if ( ydist > 0 ) and down:
 			return json.dumps({
 				'move':'down',
-				'taunt':'y: Down we go'
+				'taunt':'I didn\'t check for collision'
 			})
 		if ( ydist < 0 ) and up:
 			return json.dumps({
 				'move':'up',
-				'taunt':'y: Upwards and onwards'
+				'taunt':'I didn\'t check for collision'
 			})
 		if ( xdist > 0 ) and left:
 			return json.dumps({
 				'move':'left',
-				'taunt':'y: To the left, to the left'
+				'taunt':'I didn\'t check for collision'
 			})
 		if ( xdist < 0 ) and right:
 			return json.dumps({
 				'move':'right',
-				'taunt':'y: I am always right'
+				'taunt':'I didn\'t check for collision'
 			})
 	if down:
 		return json.dumps({
