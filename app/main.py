@@ -102,13 +102,18 @@ def checkCollision(head, board, direction):
 	print "boradUpState: ", boardUpState
 	print "boardDownState: ", boardDownState
 	if boardRightState == "head":
+		print False
 		return False
 	if boardLeftState == "head":
+		print False
 		return False
 	if boardUpState == "head":
+		print False
 		return False
 	if boardDownState == "head":
+		print False
 		return False
+	print True
 	return True
 
 def isSafe(head, board, direction):
