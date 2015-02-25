@@ -31,7 +31,7 @@ def findSnake(snakes, name):
 	return None
 	
 def sizeOfSnake(snakes, name):
-	ThisSnake = findSnake(name)
+	ThisSnake = findSnake(snakes, name)
 	if ThisSnake == None:
 		return 0
 	size = len(ThisSnake["coords"])
