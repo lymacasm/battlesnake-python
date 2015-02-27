@@ -39,7 +39,7 @@ def calcArea(board, currentLoc, initDirection, direction):
 	down = [currentLoc[0], currentLoc[1] + 1]
 	right = [currentLoc[0] + 1, currentLoc[1]]
 	left = [currentLoc[0] - 1, currentLoc[1]]
-	partialArea = 0
+	partialArea = 1
 	
 	#Logic / Recursive Calls
 	if initDirection == 'up':
