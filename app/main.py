@@ -24,6 +24,76 @@ def spin(data):
 		return 'left'
 	return
 
+def calcArea(board, currentLoc, initDirection, direction):
+	#Base Case
+	if currentLoc[0] < 0 or currentLoc[1] < 0:
+		return 0
+	if currentLoc[0] >= gBoard.Width or currentLoc[1] >= gBoard.Height:
+		return 0
+	boardTyle = board[currentLoc[0]][currentLoc[1]]
+	if boardTyle["state"] == "head" or boardTyle["state"] == "body":
+		return 0
+	
+	#Local Variables
+	up = [currentLoc[0], currentLoc[1] - 1]
+	down = [currentLoc[0], currentLoc[1] + 1]
+	right = [currentLoc[0] + 1, currentLoc[1]]
+	left = [currentLoc[0] - 1, currentLoc[1]]
+	paritalArea = 0
+	
+	#Logic / Recursive Calls
+	if initDirection == 'up':
+		if direction == 'up':
+			partialArea += calcArea(board, left, 'up', 'left') #Go left
+			partialArea += calcArea(board, right, 'up', 'right') #Go right
+			partialArea += calcArea(board, up, 'up', 'up') #Go up
+			return partialArea
+		elif direction == 'right':
+			partialArea += calcArea(board, right, 'up', 'right') #Go right
+			return partialArea
+		elif direction == 'left':
+			partialArea += calcArea(board, left, 'up', 'left') #Go left
+			return partialArea
+			
+	elif initDirection == 'down':
+		if direction == 'down':
+			partialArea += calcArea(board, left, 'down', 'left') #Go left
+			partialArea += calcArea(board, right, 'down', 'right') #Go right
+			partialArea += calcArea(board, down, 'down', 'down') #Go down
+			return partialArea
+		elif direction == 'right':
+			partialArea += calcArea(board, right, 'down', 'right') #Go right
+			return partialArea
+		elif direction == 'left':
+			partialArea += calcArea(board, left, 'down', 'left') #Go left
+			return partialArea
+			
+	elif initDirection == 'right':
+		if direction == 'right':
+			partialArea += calcArea(board, up, 'right', 'up') #Go up
+			partialArea += calcArea(board, down, 'right', 'down') #Go down
+			partialArea += calcArea(board, right, 'right', 'right') #Go right
+			return partialArea
+		elif direction == 'up':
+			partialArea += calcArea(board, up, 'right', 'up') #Go up
+			return partialArea
+		elif direction == 'down':
+			partialArea += calcArea(board, down, 'right', 'down') #Go down
+			
+	elif initDirection == 'left':
+		if direction == 'left':
+			partialArea += calcArea(board, up, 'left', 'up') #Go up
+			partialArea += calcArea(board, down, 'left', 'down') #Go down
+			partialArea += calcArea(board, left, 'left', 'left') #Go left
+		elif direction == 'up':
+			partialArea += calcArea(board, up, 'left', 'up') #Go up
+			return partialArea
+		elif direction == 'down':
+			partialArea += calcArea(board, down, 'left', 'down') #Go down
+	
+	else: 
+		return -100000 #in case we get invalid input
+
 def findSnake(snakes, name):
 	for x in range(len(snakes)):
 		if snakes[x]["name"] == name:
@@ -228,20 +298,33 @@ def chooseDirection(food,head,snakes,board):
 				'move':'left',
 				'taunt':'Left Default'
 			})
-	
-def gotoFood(data):
+			
+def findHead(data):
 	board = data["board"]
 	mySnake = findSnake(data["snakes"], myName)
 	coords = mySnake["coords"]
-	food = data["food"]
+	head = None
 	for x in range(len(coords)):
 		if board[(coords[x][0])][(coords[x][1])]["state"] == "head":
 			head = coords[x]
-	closestFood = findClosestFood(food,head)
-	return chooseDirection(closestFood,head,data["snakes"],board)
+	return head
+	
+def gotoFood(data):
+	board = data["board"]
+	food = data["food"]
+	head = findHead(data)
+	closestFood = findClosestFood(food, head)
+	return chooseDirection(closestFood, head, data["snakes"], board)
 
 def gotoSpace(data):
 	board = data["board"]
+	head = findHead(data)
+	right = [head[0] + 1, head[1]]
+	print calcArea(board, right, 'right', 'right')
+	return json.dumps({
+				'move':'right',
+				'taunt':'I\'m the smart one, you\'re the potato one'
+			})
 
 @bottle.get('/')
 def index():
