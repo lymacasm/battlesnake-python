@@ -94,6 +94,17 @@ def calcArea(board, currentLoc, initDirection, direction):
 	else: 
 		return -100000 #in case we get invalid input
 
+def calculateArea(board, start, direction):
+	if direction == 'up':
+		pos = [start[0], start[1] - 1]
+	elif direction == 'down':
+		pos = [start[0], start[1] + 1]
+	elif direction == 'right':
+		pos = [start[0] + 1, start[1]]
+	elif direction == 'left':
+		pos = [start[0] - 1, start[1]]
+	return calcArea(board, pos, direction, direction)
+
 def findSnake(snakes, name):
 	for x in range(len(snakes)):
 		if snakes[x]["name"] == name:
@@ -319,8 +330,7 @@ def gotoFood(data):
 def gotoSpace(data):
 	board = data["board"]
 	head = findHead(data)
-	right = [head[0] + 1, head[1]]
-	print calcArea(board, right, 'right', 'right')
+	print calcArea(board, head, 'right')
 	return json.dumps({
 				'move':'right',
 				'taunt':'I\'m the smart one, you\'re the potato one'
