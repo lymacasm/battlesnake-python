@@ -240,6 +240,9 @@ def gotoFood(data):
 	closestFood = findClosestFood(food,head)
 	return chooseDirection(closestFood,head,data["snakes"],board)
 
+def gotoSpace(data):
+	board = data["board"]
+
 @bottle.get('/')
 def index():
     return """
@@ -267,7 +270,7 @@ def move():
     data = bottle.request.json
     gBoard.initialize(len(data["board"]),len(data["board"][0]))
     
-    response = gotoFood(data)
+    response = gotoSpace(data)
 	
     return response
 
