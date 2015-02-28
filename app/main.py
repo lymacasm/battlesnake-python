@@ -348,7 +348,7 @@ def chooseSpaceDirection(head, data):
 					'taunt':'Don\'t be lasagna!'
 					})
 			else:
-				upSpace = 0:
+				upSpace = 0
 				maximumValue = max(rightSpace, leftSpace, upSpace, downSpace)
 		elif maximumValue == downSpace:
 			if down:
