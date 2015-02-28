@@ -78,17 +78,20 @@ def calcArea(board, currentLoc, initDirection, direction, partialArea = 0):
 			return partialArea
 		elif direction == 'down':
 			partialArea += calcArea(board, down, 'right', 'down', partialArea) #Go down
+			return partialArea
 			
 	elif initDirection == 'left':
 		if direction == 'left':
 			partialArea += calcArea(board, up, 'left', 'up', partialArea) #Go up
 			partialArea += calcArea(board, down, 'left', 'down', partialArea) #Go down
 			partialArea += calcArea(board, left, 'left', 'left', partialArea) #Go left
+			return partialArea
 		elif direction == 'up':
 			partialArea += calcArea(board, up, 'left', 'up', partialArea) #Go up
 			return partialArea
 		elif direction == 'down':
 			partialArea += calcArea(board, down, 'left', 'down', partialArea) #Go down
+			return partialArea
 	
 	else: 
 		return -100000 #in case we get invalid input
