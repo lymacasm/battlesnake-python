@@ -349,7 +349,7 @@ def gotoSpace(data):
 	head = findHead(data)
 	print calculateArea(board, head, 'right')
 	return json.dumps({
-				'move':'right',
+				'move':'down',
 				'taunt':'I\'m the smart one, you\'re the potato one'
 			})
 
