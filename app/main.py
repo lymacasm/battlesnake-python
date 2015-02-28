@@ -25,6 +25,13 @@ def spin(data):
 	return
 
 def calcArea(board, currentLoc, initDirection, direction, partialArea = 0):
+	print ""
+	print "calcArea"
+	print "currentLoc: ", currentLoc
+	print "initDirection: ", initDirection
+	print "direction: ", direction
+	print "partialArea: ", partialArea
+	
 	#Base Case
 	if currentLoc[0] < 0 or currentLoc[1] < 0:
 		return 0
