@@ -109,17 +109,17 @@ def calculateArea(board, start, direction):
 	print 'calculateArea'
 	print 'start: ', start
 	if direction == 'up':
-		print 'uppos: ', pos
 		pos = [start[0], start[1] - 1]
+		print 'uppos: ', pos
 	elif direction == 'down':
-		print 'downpos: ', pos
 		pos = [start[0], start[1] + 1]
+		print 'downpos: ', pos
 	elif direction == 'right':
-		print 'rightpos: ', pos
 		pos = [start[0] + 1, start[1]]
+		print 'rightpos: ', pos
 	elif direction == 'left':
-		print 'leftpos: ', pos
 		pos = [start[0] - 1, start[1]]
+		print 'leftpos: ', pos
 	return calcArea(board, pos, direction, direction, 0)
 
 def findSnake(snakes, name):
