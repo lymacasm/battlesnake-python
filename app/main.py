@@ -24,7 +24,7 @@ def spin(data):
 		return 'left'
 	return
 
-def calcArea(board, currentLoc, initDirection, direction, partialArea = 0):
+def calcArea(board, currentLoc, initDirection, direction, partialArea):
 	print ""
 	print "calcArea"
 	print "currentLoc: ", currentLoc
@@ -113,7 +113,7 @@ def calculateArea(board, start, direction):
 		pos = [start[0] + 1, start[1]]
 	elif direction == 'left':
 		pos = [start[0] - 1, start[1]]
-	return calcArea(board, pos, direction, direction)
+	return calcArea(board, pos, direction, direction, 0)
 
 def findSnake(snakes, name):
 	for x in range(len(snakes)):
