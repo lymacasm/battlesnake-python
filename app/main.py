@@ -105,13 +105,20 @@ def calcArea(board, currentLoc, initDirection, direction, partialArea):
 		return -100000 #in case we get invalid input
 
 def calculateArea(board, start, direction):
+	print ""
+	print 'calculateArea'
+	print 'start: ', start
 	if direction == 'up':
+		print 'uppos: ', pos
 		pos = [start[0], start[1] - 1]
 	elif direction == 'down':
+		print 'downpos: ', pos
 		pos = [start[0], start[1] + 1]
 	elif direction == 'right':
+		print 'rightpos: ', pos
 		pos = [start[0] + 1, start[1]]
 	elif direction == 'left':
+		print 'leftpos: ', pos
 		pos = [start[0] - 1, start[1]]
 	return calcArea(board, pos, direction, direction, 0)
 
