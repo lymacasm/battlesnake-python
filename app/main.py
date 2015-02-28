@@ -345,7 +345,7 @@ def chooseSpaceDirection(head, data):
 			if up:
 				return json.dumps({
 					'move':'up',
-					'taunt':'Don't be lasagna!'
+					'taunt':'Don\'t be lasagna!'
 					})
 			else:
 				upSpace = 0:
