@@ -27,12 +27,12 @@ def spin(data):
 def calcArea(board, currentLoc, initDirection, direction):
 	#Base Case
 	if currentLoc[0] < 0 or currentLoc[1] < 0:
-		return 0
+		return int(0)
 	if currentLoc[0] >= gBoard.Width or currentLoc[1] >= gBoard.Height:
-		return 0
+		return int(0)
 	boardTyle = board[currentLoc[0]][currentLoc[1]]
 	if boardTyle["state"] == "head" or boardTyle["state"] == "body":
-		return 0
+		return int(0)
 	
 	#Local Variables
 	up = [currentLoc[0], currentLoc[1] - 1]
@@ -330,7 +330,7 @@ def gotoFood(data):
 def gotoSpace(data):
 	board = data["board"]
 	head = findHead(data)
-	print calcArea(board, head, 'right')
+	print calculateArea(board, head, 'right')
 	return json.dumps({
 				'move':'right',
 				'taunt':'I\'m the smart one, you\'re the potato one'
