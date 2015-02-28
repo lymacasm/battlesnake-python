@@ -249,12 +249,119 @@ def isSafe(head, board, snakes, direction):
 		return False
 	print "isSafe: True"
 	return True
+
+def chooseSpaceDirection(head, data):
+	#Data fields
+	board = data["board"]
+	snakes = data["snakes"]
 	
-def chooseDirection(food,head,snakes,board):
-	right = isSafe(head,board,snakes,'right')
-	left = isSafe(head,board,snakes,'left')
-	up = isSafe(head,board,snakes,'up')
-	down = isSafe(head,board,snakes,'down')
+	#Check direction fields
+	rightSpace = calculateArea(board, head, 'right')
+	leftSpace = calculateArea(board, head, 'left')
+	upSpace = calculateArea(board, head, 'up')
+	downSpace = calculateArea(board, head, 'down')
+	
+	rightCol = checkCollision(head, board, snakes, 'right')
+	leftCol = checkCollision(head, board, snakes, 'left')
+	upCol = checkCollision(head, board, snakes, 'up')
+	downCol = checkCollision(head, board, snakes, 'down')
+	
+	rightSafe = isSafe(head, board, snakes, 'right')
+	leftSafe = isSafe(head, board, snakes, 'left')
+	upSafe = isSafe(head, board, snakes, 'up')
+	downSafe = isSafe(head, board, snakes, 'down')
+	
+	right = rightSafe and rightCol
+	left = leftSafe and leftCol
+	up = upSafe and upCol
+	down = downSafe and downCol
+	
+	#Local variables
+	maximumValue = max(rightSpace, leftSpace, upSpace, downSpace)
+	
+	#Logic
+	while True:
+		if maximumValue <= 0:
+			if right:
+				return json.dumps({
+					'move':'right',
+					'taunt':'Right default'
+					})
+			elif left:
+				return json.dumps({
+					'move':'left',
+					'taunt':'Left default'
+					})
+			elif up:
+				return json.dumps({
+					'move':'up',
+					'taunt':'Up default'
+					})
+			elif down:
+				return json.dumps({
+					'move':'down',
+					'taunt':'Down default'
+			elif rightSafe:
+				return json.dumps({
+					'move':'right',
+					'taunt':'Right is safe default'
+					})
+			elif leftSafe:
+				return json.dumps({
+					'move':'left',
+					'taunt':'Left is safe default'
+					})
+			elif upSafe:
+				return json.dumps({
+					'move':'up',
+					'taunt':'Up is safe default'
+					})
+			else:
+				return json.dumps({
+					'move':'down',
+					'taunt':'Down by default'
+					})
+		elif maximumValue == rightSpace:
+			if right:
+				return json.dumps({
+					'move':'right',
+					'taunt':'You\'re all a bunch of pudding brains'
+					})
+			else:
+				rightSpace = 0
+				maximumValue = max(rightSpace, leftSpace, upSpace, downSpace)
+		elif maximumValue == leftSpace:
+			if left:
+				return json.dumps({
+					'move':'left',
+					'taunt':'One of us is lying about our basic programming'
+					})
+			else:
+				leftSpace = 0
+				maximumValue = max(rightSpace, leftSpace, upSpace, downSpace)
+		elif maximumValue == upSpace:
+			if up:
+				return json.dumps({
+					'move':'up',
+					'taunt':'Don't be lasagna!'
+					})
+			else:
+				upSpace = 0:
+				maximumValue = max(rightSpace, leftSpace, upSpace, downSpace)
+		elif maximumValue == downSpace:
+			if down:
+				return json.dumps({
+					'move':'down',
+					'taunt':'Could you just hurry up please? Or I\'ll hit you with my shoe'
+					})
+		
+	
+	
+def chooseFoodDirection(food,head,snakes,board):
+	right = isSafe(head, board, snakes,'right')
+	left = isSafe(head, board, snakes,'left')
+	up = isSafe(head, board, snakes,'up')
+	down = isSafe(head, board, snakes,'down')
 	xdist = food[0] - head[0]
 	ydist = food[1] - head[1]
 	xabs = 0
@@ -344,16 +451,12 @@ def gotoFood(data):
 	food = data["food"]
 	head = findHead(data)
 	closestFood = findClosestFood(food, head)
-	return chooseDirection(closestFood, head, data["snakes"], board)
+	return chooseFoodDirection(closestFood, head, data["snakes"], board)
 
 def gotoSpace(data):
 	board = data["board"]
 	head = findHead(data)
-	print calculateArea(board, head, 'left')
-	return json.dumps({
-				'move':'down',
-				'taunt':'I\'m the smart one, you\'re the potato one'
-			})
+	return chooseSpaceDirection(head, data)
 
 @bottle.get('/')
 def index():
