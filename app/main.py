@@ -350,7 +350,7 @@ def gotoFood(data):
 def gotoSpace(data):
 	board = data["board"]
 	head = findHead(data)
-	print calculateArea(board, head, 'right')
+	print calculateArea(board, head, 'left')
 	return json.dumps({
 				'move':'down',
 				'taunt':'I\'m the smart one, you\'re the potato one'
