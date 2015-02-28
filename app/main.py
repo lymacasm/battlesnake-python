@@ -24,7 +24,7 @@ def spin(data):
 		return 'left'
 	return
 
-def calcArea(board, currentLoc, initDirection, direction):
+def calcArea(board, currentLoc, initDirection, direction, partialArea = 0):
 	#Base Case
 	if currentLoc[0] < 0 or currentLoc[1] < 0:
 		return int(0)
@@ -39,7 +39,6 @@ def calcArea(board, currentLoc, initDirection, direction):
 	down = [currentLoc[0], currentLoc[1] + 1]
 	right = [currentLoc[0] + 1, currentLoc[1]]
 	left = [currentLoc[0] - 1, currentLoc[1]]
-	partialArea = 1
 	
 	#Logic / Recursive Calls
 	if initDirection == 'up':
