@@ -354,7 +354,7 @@ def chooseSpaceDirection(head, data):
 			if down:
 				return json.dumps({
 					'move':'down',
-					'taunt':'Could you just hurry up please? Or I\'ll hit you with my shoe'
+					'taunt':'I\'ll hit you with my shoe'
 					})
 		
 	
