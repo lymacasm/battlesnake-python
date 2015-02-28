@@ -345,16 +345,16 @@ def chooseSpaceDirection(head, data):
 			if up:
 				return json.dumps({
 					'move':'up',
-					'taunt':'Don't be lasagna!'
+					'taunt':'Don\'t be lasagna!'
 					})
 			else:
-				upSpace = 0:
+				upSpace = 0
 				maximumValue = max(rightSpace, leftSpace, upSpace, downSpace)
 		elif maximumValue == downSpace:
 			if down:
 				return json.dumps({
 					'move':'down',
-					'taunt':'Could you just hurry up please? Or I\'ll hit you with my shoe'
+					'taunt':'I\'ll hit you with my shoe'
 					})
 		
 	
