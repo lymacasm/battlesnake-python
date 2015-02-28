@@ -301,11 +301,13 @@ def chooseSpaceDirection(head, data):
 				return json.dumps({
 					'move':'down',
 					'taunt':'Down default'
+					})
 			elif rightSafe:
 				return json.dumps({
 					'move':'right',
 					'taunt':'Right is safe default'
 					})
+			
 			elif leftSafe:
 				return json.dumps({
 					'move':'left',
