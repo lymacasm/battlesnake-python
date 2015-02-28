@@ -54,54 +54,54 @@ def calcArea(board, currentLoc, initDirection, direction, partialArea):
 	#Logic / Recursive Calls
 	if initDirection == 'up':
 		if direction == 'up':
-			partialArea += calcArea(board, left, 'up', 'left', partialArea) #Go left
-			partialArea += calcArea(board, right, 'up', 'right', partialArea) #Go right
-			partialArea += calcArea(board, up, 'up', 'up', partialArea) #Go up
+			partialArea = calcArea(board, left, 'up', 'left', partialArea) #Go left
+			partialArea = calcArea(board, right, 'up', 'right', partialArea) #Go right
+			partialArea = calcArea(board, up, 'up', 'up', partialArea) #Go up
 			return partialArea
 		elif direction == 'right':
-			partialArea += calcArea(board, right, 'up', 'right', partialArea) #Go right
+			partialArea = calcArea(board, right, 'up', 'right', partialArea) #Go right
 			return partialArea
 		elif direction == 'left':
-			partialArea += calcArea(board, left, 'up', 'left', partialArea) #Go left
+			partialArea = calcArea(board, left, 'up', 'left', partialArea) #Go left
 			return partialArea
 			
 	elif initDirection == 'down':
 		if direction == 'down':
-			partialArea += calcArea(board, left, 'down', 'left', partialArea) #Go left
-			partialArea += calcArea(board, right, 'down', 'right', partialArea) #Go right
-			partialArea += calcArea(board, down, 'down', 'down', partialArea) #Go down
+			partialArea = calcArea(board, left, 'down', 'left', partialArea) #Go left
+			partialArea = calcArea(board, right, 'down', 'right', partialArea) #Go right
+			partialArea = calcArea(board, down, 'down', 'down', partialArea) #Go down
 			return partialArea
 		elif direction == 'right':
-			partialArea += calcArea(board, right, 'down', 'right', partialArea) #Go right
+			partialArea = calcArea(board, right, 'down', 'right', partialArea) #Go right
 			return partialArea
 		elif direction == 'left':
-			partialArea += calcArea(board, left, 'down', 'left', partialArea) #Go left
+			partialArea = calcArea(board, left, 'down', 'left', partialArea) #Go left
 			return partialArea
 			
 	elif initDirection == 'right':
 		if direction == 'right':
-			partialArea += calcArea(board, up, 'right', 'up', partialArea) #Go up
-			partialArea += calcArea(board, down, 'right', 'down', partialArea) #Go down
-			partialArea += calcArea(board, right, 'right', 'right', partialArea) #Go right
+			partialArea = calcArea(board, up, 'right', 'up', partialArea) #Go up
+			partialArea = calcArea(board, down, 'right', 'down', partialArea) #Go down
+			partialArea = calcArea(board, right, 'right', 'right', partialArea) #Go right
 			return partialArea
 		elif direction == 'up':
-			partialArea += calcArea(board, up, 'right', 'up', partialArea) #Go up
+			partialArea = calcArea(board, up, 'right', 'up', partialArea) #Go up
 			return partialArea
 		elif direction == 'down':
-			partialArea += calcArea(board, down, 'right', 'down', partialArea) #Go down
+			partialArea = calcArea(board, down, 'right', 'down', partialArea) #Go down
 			return partialArea
 			
 	elif initDirection == 'left':
 		if direction == 'left':
-			partialArea += calcArea(board, up, 'left', 'up', partialArea) #Go up
-			partialArea += calcArea(board, down, 'left', 'down', partialArea) #Go down
-			partialArea += calcArea(board, left, 'left', 'left', partialArea) #Go left
+			partialArea = calcArea(board, up, 'left', 'up', partialArea) #Go up
+			partialArea = calcArea(board, down, 'left', 'down', partialArea) #Go down
+			partialArea = calcArea(board, left, 'left', 'left', partialArea) #Go left
 			return partialArea
 		elif direction == 'up':
-			partialArea += calcArea(board, up, 'left', 'up', partialArea) #Go up
+			partialArea = calcArea(board, up, 'left', 'up', partialArea) #Go up
 			return partialArea
 		elif direction == 'down':
-			partialArea += calcArea(board, down, 'left', 'down', partialArea) #Go down
+			partialArea = calcArea(board, down, 'left', 'down', partialArea) #Go down
 			return partialArea
 	
 	else: 
