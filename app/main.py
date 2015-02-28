@@ -34,11 +34,14 @@ def calcArea(board, currentLoc, initDirection, direction, partialArea):
 	
 	#Base Case
 	if currentLoc[0] < 0 or currentLoc[1] < 0:
+		print "Base Case Exit: 0 Walls"
 		return 0
 	if currentLoc[0] >= gBoard.Width or currentLoc[1] >= gBoard.Height:
+		print "Base Case Exit: End Walls"
 		return 0
 	boardTyle = board[currentLoc[0]][currentLoc[1]]
 	if boardTyle["state"] == "head" or boardTyle["state"] == "body":
+		print "Base Case: Snake"
 		return 0
 	
 	#Local Variables
