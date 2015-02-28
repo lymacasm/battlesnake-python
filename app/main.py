@@ -10,7 +10,7 @@ class rectangle():
 		self.Height = height
 
 gBoard = rectangle()
-myName = 'flaming-torpedo'
+myName = 'the doctor'
 
 def spin(data):
 	check = data["turn"] % 4
