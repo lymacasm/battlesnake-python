@@ -23,7 +23,7 @@ def findHead(data):
 	
 def gotoFood(data):
 	foodClass = foods()
-	foodClass.initialize(findHead(data), data["food"], gBoard, data["snakes"], data["board"])
+	foodClass.initialize(findHead(data), data, gBoard)
 	return foodClass.chooseFoodDirection()
 
 def gotoSpace(data):
