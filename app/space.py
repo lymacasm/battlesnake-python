@@ -106,10 +106,10 @@ class spacing():
 	def chooseSpaceDirection(self):
 	
 		#Check direction fields
-		rightSpace = self.calculateArea(self.board, self.head, 'right', self.gBoard)
-		leftSpace = self.calculateArea(self.board, self.head, 'left', self.gBoard)
-		upSpace = self.calculateArea(self.board, self.head, 'up', self.gBoard)
-		downSpace = self.calculateArea(self.board, self.head, 'down', self.gBoard)
+		rightSpace = self.calculateArea(self.head, 'right')
+		leftSpace = self.calculateArea(self.head, 'left')
+		upSpace = self.calculateArea(self.head, 'up')
+		downSpace = self.calculateArea(self.head, 'down')
 	
 		rightCol = checkCollision(self.head, self.board, self.snakes, 'right', self.gBoard)
 		leftCol = checkCollision(self.head, self.board, self.snakes, 'left', self.gBoard)
