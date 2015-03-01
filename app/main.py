@@ -57,7 +57,7 @@ def move():
     data = bottle.request.json
     gBoard.initialize(len(data["board"]),len(data["board"][0]), myName)
     
-    response = gotoSpace(data)
+    response = gotoFood(data)
 	
     return response
 
