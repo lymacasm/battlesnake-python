@@ -35,54 +35,54 @@ class spacing():
 		#Logic / Recursive Calls
 		if initDirection == 'up':
 			if direction == 'up':
-				partialArea += calcArea(left, 'up', 'left') #Go left
-				partialArea += calcArea(right, 'up', 'right') #Go right
-				partialArea += calcArea(up, 'up', 'up') #Go up
+				partialArea += self.calcArea(left, 'up', 'left') #Go left
+				partialArea += self.calcArea(right, 'up', 'right') #Go right
+				partialArea += self.calcArea(up, 'up', 'up') #Go up
 				return partialArea
 			elif direction == 'right':
-				partialArea += calcArea(right, 'up', 'right') #Go right
+				partialArea += self.calcArea(right, 'up', 'right') #Go right
 				return partialArea
 			elif direction == 'left':
-				partialArea += calcArea(left, 'up', 'left') #Go left
+				partialArea += self.calcArea(left, 'up', 'left') #Go left
 				return partialArea
 			
 		elif initDirection == 'down':
 			if direction == 'down':
-				partialArea += calcArea(left, 'down', 'left') #Go left
-				partialArea += calcArea(right, 'down', 'right') #Go right
-				partialArea += calcArea(down, 'down', 'down') #Go down
+				partialArea += self.calcArea(left, 'down', 'left') #Go left
+				partialArea += self.calcArea(right, 'down', 'right') #Go right
+				partialArea += self.calcArea(down, 'down', 'down') #Go down
 				return partialArea
 			elif direction == 'right':
-				partialArea += calcArea(right, 'down', 'right') #Go right
+				partialArea += self.calcArea(right, 'down', 'right') #Go right
 				return partialArea
 			elif direction == 'left':
-				partialArea += calcArea(left, 'down', 'left') #Go left
+				partialArea += self.calcArea(left, 'down', 'left') #Go left
 				return partialArea
 			
 		elif initDirection == 'right':
 			if direction == 'right':
-				partialArea += calcArea(up, 'right', 'up') #Go up
-				partialArea += calcArea(down, 'right', 'down') #Go down
-				partialArea += calcArea(right, 'right', 'right') #Go right
+				partialArea += self.calcArea(up, 'right', 'up') #Go up
+				partialArea += self.calcArea(down, 'right', 'down') #Go down
+				partialArea += self.calcArea(right, 'right', 'right') #Go right
 				return partialArea
 			elif direction == 'up':
-				partialArea += calcArea(up, 'right', 'up') #Go up
+				partialArea += self.calcArea(up, 'right', 'up') #Go up
 				return partialArea
 			elif direction == 'down':
-				partialArea += calcArea(down, 'right', 'down') #Go down
+				partialArea += self.calcArea(down, 'right', 'down') #Go down
 				return partialArea
 			
 		elif initDirection == 'left':
 			if direction == 'left':
-				partialArea += calcArea(up, 'left', 'up') #Go up
-				partialArea += calcArea(down, 'left', 'down') #Go down
-				partialArea += calcArea(left, 'left', 'left') #Go left
+				partialArea += self.calcArea(up, 'left', 'up') #Go up
+				partialArea += self.calcArea(down, 'left', 'down') #Go down
+				partialArea += self.calcArea(left, 'left', 'left') #Go left
 				return partialArea
 			elif direction == 'up':
-				partialArea += calcArea(up, 'left', 'up') #Go up
+				partialArea += self.calcArea(up, 'left', 'up') #Go up
 				return partialArea
 			elif direction == 'down':
-				partialArea += calcArea(down, 'left', 'down') #Go down
+				partialArea += self.calcArea(down, 'left', 'down') #Go down
 				return partialArea
 	
 		else: 
@@ -101,15 +101,15 @@ class spacing():
 		elif direction == 'left':
 			pos = [start[0] - 1, start[1]]
 			print 'leftpos: ', pos
-		return calcArea(pos, direction, direction)
+		return self.calcArea(pos, direction, direction)
 		
 	def chooseSpaceDirection(self):
 	
 		#Check direction fields
-		rightSpace = calculateArea(self.board, self.head, 'right', gBoard)
-		leftSpace = calculateArea(self.board, self.head, 'left', gBoard)
-		upSpace = calculateArea(self.board, self.head, 'up', gBoard)
-		downSpace = calculateArea(self.board, self.head, 'down', gBoard)
+		rightSpace = self.calculateArea(self.board, self.head, 'right', gBoard)
+		leftSpace = self.calculateArea(self.board, self.head, 'left', gBoard)
+		upSpace = self.calculateArea(self.board, self.head, 'up', gBoard)
+		downSpace = self.calculateArea(self.board, self.head, 'down', gBoard)
 	
 		rightCol = checkCollision(self.head, self.board, self.snakes, 'right', gBoard)
 		leftCol = checkCollision(self.head, self.board, self.snakes, 'left', gBoard)
