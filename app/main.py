@@ -490,12 +490,14 @@ def move():
     gBoard.initialize(len(data["board"]),len(data["board"][0]))
     
     mySnake = findSnake(data["snakes"], myName)
+    
+    
+    response = gotoSpace(data)
+    
     if mySnake == None:
     	print "Snake: Not found"
     else:
      	print mySnake
-    
-    response = gotoSpace(data)
 	
     return response
 
