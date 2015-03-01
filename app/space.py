@@ -106,20 +106,20 @@ class spacing():
 	def chooseSpaceDirection(self):
 	
 		#Check direction fields
-		rightSpace = self.calculateArea(self.board, self.head, 'right', gBoard)
-		leftSpace = self.calculateArea(self.board, self.head, 'left', gBoard)
-		upSpace = self.calculateArea(self.board, self.head, 'up', gBoard)
-		downSpace = self.calculateArea(self.board, self.head, 'down', gBoard)
+		rightSpace = self.calculateArea(self.board, self.head, 'right', self.gBoard)
+		leftSpace = self.calculateArea(self.board, self.head, 'left', self.gBoard)
+		upSpace = self.calculateArea(self.board, self.head, 'up', self.gBoard)
+		downSpace = self.calculateArea(self.board, self.head, 'down', self.gBoard)
 	
-		rightCol = checkCollision(self.head, self.board, self.snakes, 'right', gBoard)
-		leftCol = checkCollision(self.head, self.board, self.snakes, 'left', gBoard)
-		upCol = checkCollision(self.head, self.board, self.snakes, 'up', gBoard)
-		downCol = checkCollision(self.head, self.board, self.snakes, 'down', gBoard)
+		rightCol = checkCollision(self.head, self.board, self.snakes, 'right', self.gBoard)
+		leftCol = checkCollision(self.head, self.board, self.snakes, 'left', self.gBoard)
+		upCol = checkCollision(self.head, self.board, self.snakes, 'up', self.gBoard)
+		downCol = checkCollision(self.head, self.board, self.snakes, 'down', self.gBoard)
 	
-		rightSafe = isSafe(self.head, self.board, self.snakes, 'right', gBoard)
-		leftSafe = isSafe(self.head, self.board, self.snakes, 'left', gBoard)
-		upSafe = isSafe(self.head, self.board, self.snakes, 'up', gBoard)
-		downSafe = isSafe(self.head, self.board, self.snakes, 'down', gBoard)
+		rightSafe = isSafe(self.head, self.board, self.snakes, 'right', self.gBoard)
+		leftSafe = isSafe(self.head, self.board, self.snakes, 'left', self.gBoard)
+		upSafe = isSafe(self.head, self.board, self.snakes, 'up', self.gBoard)
+		downSafe = isSafe(self.head, self.board, self.snakes, 'down', self.gBoard)
 	
 		right = rightSafe and rightCol
 		left = leftSafe and leftCol
