@@ -489,7 +489,8 @@ def move():
     data = bottle.request.json
     gBoard.initialize(len(data["board"]),len(data["board"][0]))
     
-    print "score: ", data["score"]
+    mySnake = findSnake(data["snakes"], myName)
+    print mySnake["score"]
     
     response = gotoSpace(data)
 	
