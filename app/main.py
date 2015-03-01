@@ -493,7 +493,7 @@ def move():
     if mySnake == None:
     	print "Snake: Not found"
     else:
-     	print "Snake: ", mySnake["score"]
+     	print mySnake
     
     response = gotoSpace(data)
 	
