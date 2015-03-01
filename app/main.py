@@ -43,7 +43,6 @@ def index():
 @bottle.post('/start')
 def start():
     data = bottle.request.json
-    gBoard.initialize(data["width"], data["height"])
 
     return json.dumps({
         'name': myName,
