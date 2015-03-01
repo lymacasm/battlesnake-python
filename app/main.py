@@ -11,6 +11,8 @@ class rectangle():
 
 gBoard = rectangle()
 myName = 'the doctor'
+hungerPoint = 20
+sizePoint = 10
 
 def spin(data):
 	check = data["turn"] % 4
@@ -486,6 +488,8 @@ def start():
 def move():
     data = bottle.request.json
     gBoard.initialize(len(data["board"]),len(data["board"][0]))
+    
+    print "score: ", data["score"]
     
     response = gotoSpace(data)
 	
