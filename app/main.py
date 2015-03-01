@@ -27,22 +27,14 @@ def spin(data):
 	return
 
 def calcArea(board, currentLoc, initDirection, direction):
-	print ""
-	print "calcArea"
-	print "currentLoc: ", currentLoc
-	print "initDirection: ", initDirection
-	print "direction: ", direction
 	
 	#Base Case
 	if currentLoc[0] < 0 or currentLoc[1] < 0:
-		print "Base Case Exit: 0 Walls"
 		return 0
 	if currentLoc[0] >= gBoard.Width or currentLoc[1] >= gBoard.Height:
-		print "Base Case Exit: End Walls"
 		return 0
 	boardTyle = board[currentLoc[0]][currentLoc[1]]
 	if boardTyle["state"] == "head" or boardTyle["state"] == "body":
-		print "Base Case: Snake"
 		return 0
 	
 	#Local Variables
@@ -109,9 +101,6 @@ def calcArea(board, currentLoc, initDirection, direction):
 		return -100000 #in case we get invalid input
 
 def calculateArea(board, start, direction):
-	print ""
-	print 'calculateArea'
-	print 'start: ', start
 	if direction == 'up':
 		pos = [start[0], start[1] - 1]
 		print 'uppos: ', pos
@@ -182,14 +171,7 @@ def checkCollision(head, board, snakes, direction):
 		left = [head[0] - 2, head[1]]
 		up = [head[0] - 1, head[1] - 1]
 		down = [head[0] - 1, head[1] + 1]
-	print ""
-	print "checkCollision"
-	print "direction: ", direction
-	print "head: ", head
-	print "up: ", up
-	print "down: ", down
-	print "right: ", right
-	print "left: ", left
+
 	if right[0] < 0 or right[1] < 0 or right[0] >= gBoard.Width or right[1] >= gBoard.Height:
 		boardRight = None
 	else:
@@ -207,23 +189,15 @@ def checkCollision(head, board, snakes, direction):
 	else:
 		boardDown = board[down[0]][down[1]]
 	mySnakeSize = sizeOfSnake(snakes,myName)
-	print "boardRightState: ", boardRight
-	print "boardLeftState: ", boardLeft
-	print "boradUpState: ", boardUp
-	print "boardDownState: ", boardDown
+
 	if boardRight != None and boardRight["state"] == "head" and mySnakeSize <= sizeOfSnake(snakes,boardRight["snake"]):
-		print False
 		return False
 	if boardLeft != None and boardLeft["state"] == "head" and mySnakeSize <= sizeOfSnake(snakes,boardLeft["snake"]):
-		print False
 		return False
 	if boardUp != None and boardUp["state"] == "head" and mySnakeSize <= sizeOfSnake(snakes,boardUp["snake"]):
-		print False
 		return False
 	if boardDown != None and boardDown["state"] == "head" and mySnakeSize <= sizeOfSnake(snakes,boardDown["snake"]):
-		print False
 		return False
-	print True
 	return True
 
 def isSafe(head, board, snakes, direction):
@@ -247,9 +221,7 @@ def isSafe(head, board, snakes, direction):
 	if boardState["state"] == "body":
 		return False
 	if boardState["state"] == "head":
-		print "isSafe: False"
 		return False
-	print "isSafe: True"
 	return True
 
 def chooseSpaceDirection(head, data):
@@ -489,15 +461,7 @@ def move():
     data = bottle.request.json
     gBoard.initialize(len(data["board"]),len(data["board"][0]))
     
-    mySnake = findSnake(data["snakes"], myName)
-    
-    
     response = gotoSpace(data)
-    
-    if mySnake == None:
-    	print "Snake: Not found"
-    else:
-     	print mySnake
 	
     return response
 
