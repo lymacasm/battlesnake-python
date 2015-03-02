@@ -1,4 +1,5 @@
 from shapes import *
+from safety import *
 
 class foods():
 	def __init__(self):
