@@ -32,7 +32,7 @@ class foods():
 			
 	def initialize(self, Head, data, BoardDim):
 		self.head = Head
-		self.closestFood = findClosestFood(data["food"])
+		self.closestFood = self.findClosestFood(data["food"])
 		self.gBoard = BoardDim
 		self.snakes = data["snakes"]
 		self.board = data["board"]
