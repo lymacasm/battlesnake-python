@@ -23,9 +23,9 @@ class foods():
 		if not food:
 			return self.head
 		else:
-			distances.append(calcDistance(self.head,food[0]))
+			distances.append(self.calcDistance(self.head,food[0]))
 			for s in range(1,len(food)):
-				distances.append(calcDistance(self.head,food[s]))
+				distances.append(self.ßcalcDistance(self.head,food[s]))
 				if distances[s] < distances[minIndex]:
 					minIndex = s
 			return food[minIndex]	
